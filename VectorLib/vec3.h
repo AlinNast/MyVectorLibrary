@@ -1,7 +1,8 @@
 #pragma once
 
 
-struct vec3 {
+class vec3 {
+public:
 	float x;
 	float y;
 	float z;
@@ -12,23 +13,24 @@ struct vec3 {
 		this->z = z;
 	}
 
+	// done
 	vec3 operator + (const vec3& b) {
 		return vec3(this->x + b.x, this->y + b.y, this->z + b.z);
-		
 	}
 
+	// done
 	vec3 operator - (const vec3& b) {
-		return vec3(this->x + b.x, this->y + b.y, this->z + b.z);
-
+		return vec3(this->x - b.x, this->y - b.y, this->z - b.z);
 	}
-	vec3 operator += (const vec3& b) {
-		return vec3(this->x + b.x, this->y + b.y, this->z + b.z);
 
+	// should work
+	void operator += (const vec3& b) {
+		this->x + b.x, this->y + b.y, this->z + b.z;
 	}
-	vec3 operator -= (const vec3& b) {
-		return vec3(this->x + b.x, this->y + b.y, this->z + b.z);
+	void operator -= (const vec3& b) {
+		this->x - b.x, this->y - b.y, this->z - b.z;
+	}
 
-	}
 	vec3 operator * (const vec3& b) {
 		return vec3(this->x + b.x, this->y + b.y, this->z + b.z);
 
@@ -46,8 +48,9 @@ struct vec3 {
 
 	}
 
+	// should work but doesent
 	bool operator == (const vec3& b) {
-		return true;
+		return (this->x == b.x && this->y == b.y && this->z == b.z) ? true : false;
 
 	}
 
@@ -57,7 +60,19 @@ struct vec3 {
 	}
 
 	float operator [] (const int index) {
-		return x;
+		if (index == 0) {
+			return x;
+		}
+		else if (index == 1) {
+			return y;
+		}
+		else if (index == 2) {
+			return z;
+		}
+		else {
+			return 1;
+		}
+		
 
 	}
 };
