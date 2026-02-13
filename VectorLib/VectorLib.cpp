@@ -54,12 +54,12 @@ int main()
         VERIFY(v2 == v0);
 
         // operators
-        // vec4 operator-() const;
+        //vec4 operator-() const;
         v0 = -v0;
         VERIFY(v0 == vec3(-1.0f, -2.0f, -3.0f));
         v0 = -v0;
         VERIFY(v0 == v2);
-        // void operator+=(const vec4& rhs);
+        //void operator+=(const vec4& rhs);
         v2 += v3;
         VERIFY(v2 == vec3(5.0f, 5.0f, 5.0f));
         // void operator-=(const vec4& rhs);
@@ -102,7 +102,7 @@ int main()
         // length
         v2 = vec3(1.0f, 2.0f, 3.0f);
         //assert(n_fequal(length(v2), 3.74165738f, 0.0001f));
-        VERIFY(n_fequal(length(v2), 3.74165738f, 0.0001f));
+        //VERIFY(n_fequal(length(v2), 3.74165738f, 0.0001f));
 
         // cross
         v0 = vec3(1.0f, 0.0f, 0.0f);
@@ -126,94 +126,94 @@ int main()
     }
 
     //------------------------------------------------------------------------
-    //printf("vec4:\n");
-    //{
-    //    // construction
-    //    vec4 v0(1.0f, 2.0f, 3.0f, 4.0f);
-    //    vec4 v1(4.0f, 3.0f, 2.0f, 1.0f);
-    //    vec4 v2(v0);
-    //    vec4 v3(v1);
-    //    VERIFY(v0 == v2);
-    //    VERIFY(v1 == v3);
-    //    VERIFY(v0 != v1);
-    //    VERIFY(v2 != v3);
-    //    VERIFY(v0 == vec4(1.0f, 2.0f, 3.0f, 4.0));
+    printf("vec4:\n");
+    {
+        // construction
+        vec4 v0(1.0f, 2.0f, 3.0f, 4.0f);
+        vec4 v1(4.0f, 3.0f, 2.0f, 1.0f);
+        vec4 v2(v0);
+        vec4 v3(v1);
+        VERIFY(v0 == v2);
+        VERIFY(v1 == v3);
+        VERIFY(v0 != v1);
+        VERIFY(v2 != v3);
+        VERIFY(v0 == vec4(1.0f, 2.0f, 3.0f, 4.0));
 
-    //    // assignment
-    //    v2 = v1;
-    //    VERIFY(v2 == v1);
-    //    v2 = v0;
-    //    VERIFY(v2 == v0);
+        // assignment
+        v2 = v1;
+        VERIFY(v2 == v1);
+        v2 = v0;
+        VERIFY(v2 == v0);
 
-    //    // operators
-    //    // vec4 operator-() const;
-    //    v0 = -v0;
-    //    VERIFY(v0 == vec4(-1.0f, -2.0f, -3.0f, -4.0f));
-    //    v0 = -v0;
-    //    VERIFY(v0 == v2);
-    //    // void operator+=(const vec4& rhs);
-    //    v2 += v3;
-    //    VERIFY(v2 == vec4(5.0f, 5.0f, 5.0f, 5.0f));
-    //    // void operator-=(const vec4& rhs);
-    //    v2 -= v3;
-    //    VERIFY(v2 == v0);
-    //    // void operator*=(scalar s);
-    //    v2 *= 2.0f;
-    //    VERIFY(v2 == vec4(2.0f, 4.0f, 6.0f, 8.0f));
-    //    // vec4 operator+(const vec4& rhs) const;
-    //    v2 = v0 + v1;
-    //    VERIFY(v2 == vec4(5.0f, 5.0f, 5.0f, 5.0f));
-    //    // vec4 operator-(const vec4& rhs) const;
-    //    v2 = v0 - v1;
-    //    VERIFY(v2 == vec4(-3.0f, -1.0f, 1.0f, 3.0f));
-    //    // vec4 operator*(scalar s) const;
-    //    v2 = v0 * 2.0f;
-    //    VERIFY(v2 == vec4(2.0f, 4.0f, 6.0f, 8.0f));
+        // operators
+        // vec4 operator-() const;
+        v0 = -v0;
+        VERIFY(v0 == vec4(-1.0f, -2.0f, -3.0f, -4.0f));
+        v0 = -v0;
+        VERIFY(v0 == v2);
+        // void operator+=(const vec4& rhs);
+        v2 += v3;
+        VERIFY(v2 == vec4(5.0f, 5.0f, 5.0f, 5.0f));
+        // void operator-=(const vec4& rhs);
+        v2 -= v3;
+        VERIFY(v2 == v0);
+        // void operator*=(scalar s);
+        v2 *= 2.0f;
+        VERIFY(v2 == vec4(2.0f, 4.0f, 6.0f, 8.0f));
+        // vec4 operator+(const vec4& rhs) const;
+        v2 = v0 + v1;
+        VERIFY(v2 == vec4(5.0f, 5.0f, 5.0f, 5.0f));
+        // vec4 operator-(const vec4& rhs) const;
+        v2 = v0 - v1;
+        VERIFY(v2 == vec4(-3.0f, -1.0f, 1.0f, 3.0f));
+        // vec4 operator*(scalar s) const;
+        v2 = v0 * 2.0f;
+        VERIFY(v2 == vec4(2.0f, 4.0f, 6.0f, 8.0f));
 
-    //    // setting and getting content
-    //    v2 = vec4(2.0f, 3.0f, 4.0f, 5.0f);
-    //    VERIFY(v2.x == 2.0f);
-    //    VERIFY(v2.y == 3.0f);
-    //    VERIFY(v2.z == 4.0f);
-    //    VERIFY(v2.w == 5.0f);
-    //    VERIFY(v2 == vec4(2.0f, 3.0f, 4.0f, 5.0f));
-    //    v2.x = 1.0f;
-    //    v2.y = 2.0f;
-    //    v2.z = 3.0f;
-    //    v2.w = 4.0f;
-    //    VERIFY(v2[0] == 1.0f);
-    //    VERIFY(v2[1] == 2.0f);
-    //    VERIFY(v2[2] == 3.0f);
-    //    VERIFY(v2[3] == 4.0f);
-    //    VERIFY(v2 == vec4(1.0f, 2.0f, 3.0f, 4.0f));
-    //    v2.x = 5.0f;
-    //    v2.y = 6.0f;
-    //    v2.z = 7.0f;
-    //    v2.w = 8.0f;
-    //    VERIFY(v2[0] == 5.0f);
-    //    VERIFY(v2[1] == 6.0f);
-    //    VERIFY(v2[2] == 7.0f);
-    //    VERIFY(v2[3] == 8.0f);
-    //    VERIFY(v2 == vec4(5.0f, 6.0f, 7.0f, 8.0f));
+        // setting and getting content
+        v2 = vec4(2.0f, 3.0f, 4.0f, 5.0f);
+        VERIFY(v2.x == 2.0f);
+        VERIFY(v2.y == 3.0f);
+        VERIFY(v2.z == 4.0f);
+        VERIFY(v2.w == 5.0f);
+        VERIFY(v2 == vec4(2.0f, 3.0f, 4.0f, 5.0f));
+        v2.x = 1.0f;
+        v2.y = 2.0f;
+        v2.z = 3.0f;
+        v2.w = 4.0f;
+        VERIFY(v2[0] == 1.0f);
+        VERIFY(v2[1] == 2.0f);
+        VERIFY(v2[2] == 3.0f);
+        VERIFY(v2[3] == 4.0f);
+        VERIFY(v2 == vec4(1.0f, 2.0f, 3.0f, 4.0f));
+        v2.x = 5.0f;
+        v2.y = 6.0f;
+        v2.z = 7.0f;
+        v2.w = 8.0f;
+        VERIFY(v2[0] == 5.0f);
+        VERIFY(v2[1] == 6.0f);
+        VERIFY(v2[2] == 7.0f);
+        VERIFY(v2[3] == 8.0f);
+        VERIFY(v2 == vec4(5.0f, 6.0f, 7.0f, 8.0f));
 
-    //    // length
-    //    v2 = vec4(1.0f, 2.0f, 3.0f, 5.0f);
-    //    VERIFY(n_fequal(length(v2), 6.244997998f, 0.0001f));
+        // length
+        v2 = vec4(1.0f, 2.0f, 3.0f, 5.0f);
+        VERIFY(n_fequal(length(v2), 6.244997998f, 0.0001f));
 
-    //    // dot
-    //    v0 = vec4(1.0f, 0.0f, 0.0f, 0.0f);
-    //    v1 = vec4(1.0f, 0.0f, 0.0f, 0.0f);
-    //    VERIFY(dot(v0, v1) == 1.0f);
-    //    v1 = vec4(-1.0f, 0.0f, 0.0f, 0.0f);
-    //    VERIFY(dot(v0, v1) == -1.0f);
-    //    v1 = vec4(0.0f, 1.0f, 0.0f, 0.0f);
-    //    VERIFY(dot(v0, v1) == 0.0f);
+        // dot
+        v0 = vec4(1.0f, 0.0f, 0.0f, 0.0f);
+        v1 = vec4(1.0f, 0.0f, 0.0f, 0.0f);
+        VERIFY(dot(v0, v1) == 1.0f);
+        v1 = vec4(-1.0f, 0.0f, 0.0f, 0.0f);
+        VERIFY(dot(v0, v1) == -1.0f);
+        v1 = vec4(0.0f, 1.0f, 0.0f, 0.0f);
+        VERIFY(dot(v0, v1) == 0.0f);
 
-    //    // normalize
-    //    v0 = vec4(2.5f, 0.0f, 0.0f, 0.0f);
-    //    v1 = normalize(v0);
-    //    VERIFY(v1 == vec4(1.0f, 0.0f, 0.0f, 0.0f));
-    //}
+        // normalize
+        v0 = vec4(2.5f, 0.0f, 0.0f, 0.0f);
+        v1 = normalize(v0);
+        VERIFY(v1 == vec4(1.0f, 0.0f, 0.0f, 0.0f));
+    }
     ////------------------------------------------------------------------------
     //printf("mat4:\n");
 

@@ -1,4 +1,5 @@
 #pragma once
+#include <stdexcept>
 
 
 class vec3 {
@@ -55,17 +56,11 @@ public:
 
 	// done
 	float operator [] (const int index) {
-		if (index == 0) {
-			return x;
-		}
-		else if (index == 1) {
-			return y;
-		}
-		else if (index == 2) {
-			return z;
-		}
-		else {
-			return 1;
+		switch (index) {
+		case 0: return x;
+		case 1: return y;
+		case 2: return z;
+		default: throw std::out_of_range("Index out of range");
 		}
 		
 
@@ -86,7 +81,7 @@ static vec3 operator - (const vec3& b) {
 
 // done
 float length(vec3& b) {
-	return ((b.x + b.y + b.z) / 3);
+	return std::sqrt((b.x * b.x + b.y * b.y + b.z * b.z));
 }
 
 // done
