@@ -1,7 +1,7 @@
 #pragma once
 #include <stdexcept>
 
-#pragma once
+
 
 
 class vec4 {
@@ -10,6 +10,13 @@ public:
 	float y;
 	float z;
 	float w;
+
+	vec4() {
+		this->x = 0.0f;
+		this->y = 0.0f;
+		this->z = 0.0f;
+		this->w = 0.0f;
+	}
 
 	vec4(float x, float y, float z, float w) {
 		this->x = x;
@@ -62,7 +69,7 @@ public:
 
 	}
 
-	float operator [] (const int index) {
+	float& operator [] (const int index) {
 		switch (index) {
 		case 0: return x;
 		case 1: return y;
@@ -89,4 +96,15 @@ static vec4 operator - (const vec4& b) {
 
 static float dot(const vec4& b, const vec4& a) {
 	return (b.x * a.x) + (b.y * a.y) + (b.z * a.z) + (b.w * a.w);
+}
+
+inline bool n_fequal(float a, float b, float epsilon = 0.0001f) {
+	return std::abs(a - b) < epsilon;
+}
+
+inline bool n_fequal(const vec4& a, const vec4& b, const vec4& epsilon) {
+	return std::abs(a.x - b.x) < epsilon.x &&
+		std::abs(a.y - b.y) < epsilon.y &&
+		std::abs(a.z - b.z) < epsilon.z &&
+		std::abs(a.w - b.w) < epsilon.w;
 }

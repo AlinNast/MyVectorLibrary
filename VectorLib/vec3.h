@@ -1,5 +1,7 @@
 #pragma once
 #include <stdexcept>
+#include <cmath>
+
 
 
 class vec3 {
@@ -55,7 +57,7 @@ public:
 	}
 
 	// done
-	float operator [] (const int index) {
+	float& operator [] (const int index) {
 		switch (index) {
 		case 0: return x;
 		case 1: return y;
@@ -81,7 +83,7 @@ static vec3 operator - (const vec3& b) {
 
 // done
 float length(vec3& b) {
-	return std::sqrt((b.x * b.x + b.y * b.y + b.z * b.z));
+	return (float)std::sqrt((b.x * b.x + b.y * b.y + b.z * b.z));
 }
 
 // done

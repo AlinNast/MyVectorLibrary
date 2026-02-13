@@ -24,11 +24,11 @@ inline bool cmple(vec4 a, vec4 b)
 	return a.x <= b.x && a.y <= b.y && a.z <= b.z && a.w <= b.w;
 }
 
-inline bool n_fequal(float f0, float f1, float tol)
-{
-	float f = f0 - f1;
-	return ((f > (-tol)) && (f < tol));
-}
+//inline bool n_fequal(float f0, float f1, float tol)
+//{
+//	float f = f0 - f1;
+//	return ((f > (-tol)) && (f < tol));
+//}
 
 inline bool nearequal(vec3 v0, vec3 v1, vec3 epsilon)
 {
@@ -48,9 +48,9 @@ inline bool nearequal(vec4 v0, vec4 v1, vec4 epsilon)
 	return cmple(temp, epsilon);
 }
 
-//inline bool matnearequal(mat4 lhs, mat4 rhs)
-//{
-//	const float E = 0.00001f;
-//	const vec4 E4(E, E, E, E);
-//	return nearequal(lhs[0], rhs[0], E4) && nearequal(lhs[1], rhs[1], E4) && nearequal(lhs[2], rhs[2], E4) && nearequal(lhs[3], rhs[3], E4);
-//}
+inline bool matnearequal(mat4 lhs, mat4 rhs)
+{
+	const float E = 0.00001f;
+	const vec4 E4(E, E, E, E);
+	return nearequal(lhs[0], rhs[0], E4) && nearequal(lhs[1], rhs[1], E4) && nearequal(lhs[2], rhs[2], E4) && nearequal(lhs[3], rhs[3], E4);
+}
