@@ -2,3 +2,6 @@
 
 VectorLib/.vs
 *.vsidx
+/VectorLib/VectorLib/x64
+/VectorLib/VectorLib/x64
+/VectorLib/VectorLib/x64/Debug

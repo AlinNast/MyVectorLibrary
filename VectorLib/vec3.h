@@ -31,34 +31,29 @@ public:
 		this->x - b.x, this->y - b.y, this->z - b.z;
 	}
 
-	vec3 operator * (const vec3& b) {
-		return vec3(this->x + b.x, this->y + b.y, this->z + b.z);
-
+	// Only scalar, Vector is outside the class as a static function
+	vec3 operator * (float b) {
+		return vec3(this->x * b, this->y * b, this->z * b);
 	}
-	vec3 operator *= (const vec3& b) {
-		return vec3(this->x + b.x, this->y + b.y, this->z + b.z);
-
-	}
-	vec3 operator * (const float b) {
-		return vec3(this->x + b, this->y + b, this->z + b);
-
-	}
-	vec3 operator *= (const float b) {
-		return vec3(this->x + b, this->y + b, this->z + b);
-
+	void operator *= (float b) {
+		this->x *= b;
+		this->y *= b;
+		this->z *= b;
 	}
 
 	// should work but doesent
 	bool operator == (const vec3& b) {
-		return (this->x == b.x && this->y == b.y && this->z == b.z) ? true : false;
-
-	}
-
-	bool operator != (const vec3& b) {
+		//return (this->x == b.x && this->y == b.y && this->z == b.z) ? true : false;
 		return true;
+	}
+
+	// should work
+	bool operator != (const vec3& b) {
+		return (this->x != b.x || this->y != b.y || this->z != b.z) ? true : false;
 
 	}
 
+	// done
 	float operator [] (const int index) {
 		if (index == 0) {
 			return x;
@@ -75,28 +70,39 @@ public:
 		
 
 	}
+
+
 };
 
+// should work
 static vec3 operator - (const vec3& b) {
 	return vec3(-b.x, -b.y, -b.z);
 
 }
 
-static float length(const vec3& b) {
-	return 1.0f;
+//static float length(const vec3& b) {
+//	return ((b.x + b.y + b.z) / 3);
+//}
+
+// done
+float length(vec3& b) {
+	return ((b.x + b.y + b.z) / 3);
 }
 
-static vec3 normalize (const vec3& b) {
-	return vec3(-b.x, -b.y, -b.z);
-
+// done
+vec3 normalize (vec3& b) {
+	return vec3(b.x/length(b), b.y / length(b), b.z / length(b));
 }
-
+ 
 static vec3 cross(const vec3& b, const vec3& a) {
-	return vec3(-b.x, -b.y, -b.z);
-
+	return vec3(
+		(b.y * a.z) - (b.z * a.y), 
+		(b.z * a.x) - (b.x * a.z), 
+		(b.x * a.y) - (b.y * a.x)  
+	);
 }
 
 static float dot(const vec3& b, const vec3& a) {
-	return 1.0f;
+	return (b.x * a.x) + (b.y * a.y) + (b.z * a.z);
 }
 
