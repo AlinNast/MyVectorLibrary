@@ -21,7 +21,8 @@ struct FailedTest {
 };
 static TestId testId = 0;
 static std::vector<FailedTest> failedTests;
-#define VERIFY(RESULT) { assert(RESULT); testId++; printf("#%0*u: %*s\n", 3, testId, 6, RESULT ? s : f); if (!(RESULT)) failedTests.push_back({testId, (Line)__LINE__, #RESULT}); }
+//#define VERIFY(RESULT) { assert(RESULT); testId++; printf("#%0*u: %*s\n", 3, testId, 6, RESULT ? s : f); if (!(RESULT)) failedTests.push_back({testId, (Line)__LINE__, #RESULT}); }
+#define VERIFY(RESULT) {  testId++; printf("#%0*u: %*s\n", 3, testId, 6, RESULT ? s : f); if (!(RESULT)) failedTests.push_back({testId, (Line)__LINE__, #RESULT}); }
 
 int main()
 {
@@ -245,82 +246,82 @@ int main()
         //VERIFY((result == pOneTwoThree));
 
         //        // multiplication and multiplication order, transform point by matrix
-        //        const mat4 mRotOneX_Trans123 = trans123 * rotOneX;
-        //        VERIFY(matnearequal(mRotOneX_Trans123,
-        //            mat4(vec4(1.0f, 0.0f, 0.0f, 0.0f),
-        //                vec4(0.0f, 0.540302f, 0.841471f, 0.0f),
-        //                vec4(0.0f, -0.841471f, 0.540302f, 0.0f),
-        //                vec4(1.0f, 2.0f, 3.0f, 1.0f))));
-        //        result = mRotOneX_Trans123 * pZero;
-        //        VERIFY(nearequal(result, pOneTwoThree, E4));
-        //        result = mRotOneX_Trans123 * pOneX;
-        //        VERIFY(nearequal(result, vec4(2.0f, 2.0f, 3.0f, 1.0f), E4));
-        //        result = mRotOneX_Trans123 * pOneY;
-        //        VERIFY(nearequal(result, vec4(1.0f, 2.540302f, 3.841471f, 1.0f), E4));
-        //
-        //        // inverse
-        //        m0 = inverse(mRotOneX_Trans123);
-        //        VERIFY(matnearequal(m0, mat4(vec4(1.0f, 0.0f, 0.0f, 0.0f),
-        //            vec4(0.0f, 0.540302f, -0.841471f, 0.0f),
-        //            vec4(0.0f, 0.841471f, 0.540302f, 0.0f),
-        //            vec4(-1.0f, -3.605018f, 0.062035f, 1.0f))));
-        //        // transpose
-        //        m0 = transpose(mRotOneX_Trans123);
-        //        VERIFY(matnearequal(m0, mat4(vec4(1.0f, 0.0f, 0.0f, 1.0f),
-        //            vec4(0.0f, 0.540302f, -0.841471f, 2.0f),
-        //            vec4(0.0f, 0.841471f, 0.540302f, 3.0f),
-        //            vec4(0.0f, 0.0f, 0.0f, 1.0f))));
-        //        // rotations
-        //        const mat4 rotX = RotationX(2.0f);
-        //        VERIFY(matnearequal(rotX, mat4(vec4(1.000000f, 0.000000f, 0.000000f, 0.000000f),
-        //            vec4(0.000000f, -0.416147f, 0.909297f, 0.000000f),
-        //            vec4(0.000000f, -0.909297f, -0.416147f, 0.000000f),
-        //            vec4(0.000000f, 0.000000f, 0.000000f, 1.000000f))));
-        //        const mat4 rotY = RotationY(-1.7f);
-        //        VERIFY(matnearequal(rotY, mat4(vec4(-0.128845f, 0.000000f, 0.991665f, 0.000000f),
-        //            vec4(0.000000f, 1.000000f, 0.000000f, 0.000000f),
-        //            vec4(-0.991665f, 0.000000f, -0.128845f, 0.000000f),
-        //            vec4(0.000000f, 0.000000f, 0.000000f, 1.000000f))));
-        //        const mat4 rotZ = RotationZ(3.1f);
-        //        VERIFY(matnearequal(rotZ, mat4(vec4(-0.999135f, 0.041581f, 0.000000f, 0.000000f),
-        //            vec4(-0.041581f, -0.999135f, 0.000000f, 0.000000f),
-        //            vec4(0.000000f, 0.000000f, 1.000000f, 0.000000f),
-        //            vec4(0.000000f, 0.000000f, 0.000000f, 1.000000f))));
-        //        //const vec3 rotaxis = normalize(vec3(1.0f, 0.2f, 2.0f));
-        //        //const mat4 rot = rotationaxis(rotaxis, -2.53652f);
-        //        //VERIFY(matnearequal(rot, mat4(vec4(-0.460861f, -0.434427f, 0.773873f, 0.000000f),
-        //        //    vec4(0.579067f, -0.807997f, -0.108734f, 0.000000f),
-        //        //    vec4(0.672524f, 0.398013f, 0.623936f, 0.000000f),
-        //        //    vec4(0.000000f, 0.000000f, 0.000000f, 1.000000f))));
-        //
-        //        // component-wise access
-        //        mat4 m1;
-        //        m0 = mat4(vec4(2.0f, 0.0f, 0.0f, 0.0f),
-        //            vec4(0.0f, 2.0f, 0.0f, 0.0f),
-        //            vec4(0.0f, 0.0f, 2.0f, 0.0f),
-        //            vec4(0.0f, 0.0f, 0.0f, 1.0f));
-        //        vec4 value(2.0f, 0.0f, 0.0f, 0.0f);
-        //        m1[0] = value;
-        //        value = vec4(0.0f, 2.0f, 0.0f, 0.0f);
-        //        m1[1] = value;
-        //        value = vec4(0.0f, 0.0f, 2.0f, 0.0f);
-        //        m1[2] = value;
-        //        value = vec4(0.0f, 0.0f, 0.0f, 1.0f);
-        //        m1[3] = value;
-        //        VERIFY(m0 == m1);
-        //        VERIFY(m0[0] == vec4(2.0f, 0.0f, 0.0f, 0.0f));
-        //        VERIFY(m0[1] == vec4(0.0f, 2.0f, 0.0f, 0.0f));
-        //        VERIFY(m0[2] == vec4(0.0f, 0.0f, 2.0f, 0.0f));
-        //        VERIFY(m0[3] == vec4(0.0f, 0.0f, 0.0f, 1.0f));
-        //
-        //        // determinant
-        //        const float det = determinant(mRotOneX_Trans123);
-        //        VERIFY(n_fequal(1.0f, det, 0.0001f));
-        //
-        //#ifdef TEST_VIEW_PERSPECTIVE
-        //        const vec3 eye(3.0f, 2.0f, 10.0f);
-        //        const vec3 at(3.0f, 2.0f, 2.0f);
-        //        const vec3 up(0.0f, 1.0f, 0.0f);
+        const mat4 mRotOneX_Trans123 = trans123 * rotOneX;
+        VERIFY(matnearequal(mRotOneX_Trans123,
+                    mat4(vec4(1.0f, 0.0f, 0.0f, 0.0f),
+                        vec4(0.0f, 0.540302f, 0.841471f, 0.0f),
+                        vec4(0.0f, -0.841471f, 0.540302f, 0.0f),
+                        vec4(1.0f, 2.0f, 3.0f, 1.0f))));
+                result = mRotOneX_Trans123 * pZero;
+                VERIFY(nearequal(result, pOneTwoThree, E4));
+                result = mRotOneX_Trans123 * pOneX;
+                VERIFY(nearequal(result, vec4(2.0f, 2.0f, 3.0f, 1.0f), E4));
+                result = mRotOneX_Trans123 * pOneY;
+                VERIFY(nearequal(result, vec4(1.0f, 2.540302f, 3.841471f, 1.0f), E4));
+        
+                // inverse
+                m0 = inverse(mRotOneX_Trans123);
+                VERIFY(matnearequal(m0, mat4(vec4(1.0f, 0.0f, 0.0f, 0.0f),
+                    vec4(0.0f, 0.540302f, -0.841471f, 0.0f),
+                    vec4(0.0f, 0.841471f, 0.540302f, 0.0f),
+                    vec4(-1.0f, -3.605018f, 0.062035f, 1.0f))));
+                // transpose
+                m0 = transpose(mRotOneX_Trans123);
+                VERIFY(matnearequal(m0, mat4(vec4(1.0f, 0.0f, 0.0f, 1.0f),
+                    vec4(0.0f, 0.540302f, -0.841471f, 2.0f),
+                    vec4(0.0f, 0.841471f, 0.540302f, 3.0f),
+                    vec4(0.0f, 0.0f, 0.0f, 1.0f))));
+                // rotations
+                const mat4 rotX = RotationX(2.0f);
+                VERIFY(matnearequal(rotX, mat4(vec4(1.000000f, 0.000000f, 0.000000f, 0.000000f),
+                    vec4(0.000000f, -0.416147f, 0.909297f, 0.000000f),
+                    vec4(0.000000f, -0.909297f, -0.416147f, 0.000000f),
+                    vec4(0.000000f, 0.000000f, 0.000000f, 1.000000f))));
+                const mat4 rotY = RotationY(-1.7f);
+                VERIFY(matnearequal(rotY, mat4(vec4(-0.128845f, 0.000000f, 0.991665f, 0.000000f),
+                    vec4(0.000000f, 1.000000f, 0.000000f, 0.000000f),
+                    vec4(-0.991665f, 0.000000f, -0.128845f, 0.000000f),
+                    vec4(0.000000f, 0.000000f, 0.000000f, 1.000000f))));
+                const mat4 rotZ = RotationZ(3.1f);
+                VERIFY(matnearequal(rotZ, mat4(vec4(-0.999135f, 0.041581f, 0.000000f, 0.000000f),
+                    vec4(-0.041581f, -0.999135f, 0.000000f, 0.000000f),
+                    vec4(0.000000f, 0.000000f, 1.000000f, 0.000000f),
+                    vec4(0.000000f, 0.000000f, 0.000000f, 1.000000f))));
+                //const vec3 rotaxis = normalize(vec3(1.0f, 0.2f, 2.0f));
+                //const mat4 rot = rotationaxis(rotaxis, -2.53652f);
+                //VERIFY(matnearequal(rot, mat4(vec4(-0.460861f, -0.434427f, 0.773873f, 0.000000f),
+                //    vec4(0.579067f, -0.807997f, -0.108734f, 0.000000f),
+                //    vec4(0.672524f, 0.398013f, 0.623936f, 0.000000f),
+                //    vec4(0.000000f, 0.000000f, 0.000000f, 1.000000f))));
+        
+                // component-wise access
+                mat4 m1;
+                m0 = mat4(vec4(2.0f, 0.0f, 0.0f, 0.0f),
+                    vec4(0.0f, 2.0f, 0.0f, 0.0f),
+                    vec4(0.0f, 0.0f, 2.0f, 0.0f),
+                    vec4(0.0f, 0.0f, 0.0f, 1.0f));
+                vec4 value(2.0f, 0.0f, 0.0f, 0.0f);
+                m1[0] = value;
+                value = vec4(0.0f, 2.0f, 0.0f, 0.0f);
+                m1[1] = value;
+                value = vec4(0.0f, 0.0f, 2.0f, 0.0f);
+                m1[2] = value;
+                value = vec4(0.0f, 0.0f, 0.0f, 1.0f);
+                m1[3] = value;
+                VERIFY(m0 == m1);
+                VERIFY(m0[0] == vec4(2.0f, 0.0f, 0.0f, 0.0f));
+                VERIFY(m0[1] == vec4(0.0f, 2.0f, 0.0f, 0.0f));
+                VERIFY(m0[2] == vec4(0.0f, 0.0f, 2.0f, 0.0f));
+                VERIFY(m0[3] == vec4(0.0f, 0.0f, 0.0f, 1.0f));
+        
+                // determinant
+                const float det = determinant(mRotOneX_Trans123);
+                VERIFY(n_fequal(1.0f, det, 0.0001f));
+        
+       /* #ifdef TEST_VIEW_PERSPECTIVE
+                const vec3 eye(3.0f, 2.0f, 10.0f);
+                const vec3 at(3.0f, 2.0f, 2.0f);
+                const vec3 up(0.0f, 1.0f, 0.0f);*/
         //#ifdef USE_LH
         //        // lookatlh
         //        mat4 tmp = lookat(eye, at, up);

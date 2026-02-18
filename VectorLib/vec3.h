@@ -27,9 +27,14 @@ public:
 	}
 
 	// should work
-	void operator += (const vec3& b) {
-		this->x + b.x, this->y + b.y, this->z + b.z;
+	vec3& operator += (const vec3& b) {
+
+		x += b.x;
+		y += b.y;
+		z += b.z;
+		return *this;
 	}
+
 	void operator -= (const vec3& b) {
 		this->x - b.x, this->y - b.y, this->z - b.z;
 	}
@@ -38,6 +43,7 @@ public:
 	vec3 operator * (float b) {
 		return vec3(this->x * b, this->y * b, this->z * b);
 	}
+
 	void operator *= (float b) {
 		this->x *= b;
 		this->y *= b;
@@ -46,8 +52,8 @@ public:
 
 	// should work but doesent
 	bool operator == (const vec3& b) {
-		//return (this->x == b.x && this->y == b.y && this->z == b.z) ? true : false;
-		return true;
+		return (this->x == b.x && this->y == b.y && this->z == b.z) ? true : false;
+		//return true;
 	}
 
 	// should work

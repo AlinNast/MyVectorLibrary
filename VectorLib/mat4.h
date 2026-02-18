@@ -30,6 +30,7 @@ public:
 		this->rows[3] = other.rows[3];
 	}
 
+	// Cekc this 
 	mat4 operator*(const mat4& other) const {
 		mat4 result;
 		for (int i = 0; i < 4; i++) {
@@ -134,15 +135,15 @@ inline mat4 transpose(const mat4& m) {
 	);
 }
 
-inline bool matnearequal(const mat4& a, const mat4& b, float epsilon = 0.0001f) {
-	for (int i = 0; i < 4; i++) {
-		if (!n_fequal(a[i].x, b[i].x, epsilon)) return false;
-		if (!n_fequal(a[i].y, b[i].y, epsilon)) return false;
-		if (!n_fequal(a[i].z, b[i].z, epsilon)) return false;
-		if (!n_fequal(a[i].w, b[i].w, epsilon)) return false;
-	}
-	return true;
-}
+//inline bool matnearequal(const mat4& a, const mat4& b, float epsilon = 0.0001f) {
+//	for (int i = 0; i < 4; i++) {
+//		if (!n_fequal(a[i].x, b[i].x, epsilon)) return false;
+//		if (!n_fequal(a[i].y, b[i].y, epsilon)) return false;
+//		if (!n_fequal(a[i].z, b[i].z, epsilon)) return false;
+//		if (!n_fequal(a[i].w, b[i].w, epsilon)) return false;
+//	}
+//	return true;
+//}
 
 inline float determinant(const mat4& m) {
 	float res =
