@@ -35,8 +35,11 @@ public:
 		return *this;
 	}
 
-	void operator -= (const vec3& b) {
-		this->x - b.x, this->y - b.y, this->z - b.z;
+	vec3& operator -= (const vec3& b) {
+		x -= b.x;
+		y -= b.y;
+		z -= b.z;
+		return *this;
 	}
 
 	// Only scalar, Vector is outside the class as a static function
@@ -44,10 +47,11 @@ public:
 		return vec3(this->x * b, this->y * b, this->z * b);
 	}
 
-	void operator *= (float b) {
-		this->x *= b;
-		this->y *= b;
-		this->z *= b;
+	vec3& operator *= (float b) {
+		x *= b;
+		y *= b;
+		z *= b;
+		return *this;
 	}
 
 	// should work but doesent
